@@ -9,7 +9,7 @@ L.Control.EasyButtons = L.Control.extend({
         var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
 
         this.link = L.DomUtil.create('a', 'leaflet-bar-part', container);
-        this._addImage()
+        this._addImage();
         this.link.href = '#';
 
         L.DomEvent.on(this.link, 'click', this._click, this);
@@ -33,22 +33,23 @@ L.Control.EasyButtons = L.Control.extend({
     }
 });
 
-L.easyButton = function( btnIcon , btnFunction , btnTitle , btnMap ) {
-  var newControl = new L.Control.EasyButtons;
-  if (btnIcon) newControl.options.intentedIcon = btnIcon;
+L.easyButton = function( btnIcon , btnPosition, btnFunction , btnTitle , btnMap ) {
+    var newControl = new L.Control.EasyButtons;
+    if (btnIcon) newControl.options.intentedIcon = btnIcon;
+    if (btnPosition) newControl.options.position = btnPosition;
 
-  if ( typeof btnFunction === 'function'){
-    newControl.intendedFunction = btnFunction;
-  }
+    if ( typeof btnFunction === 'function'){
+        newControl.intendedFunction = btnFunction;
+    }
 
-  if (btnTitle) newControl.options.title = btnTitle;
+    if (btnTitle) newControl.options.title = btnTitle;
 
-  if ( btnMap == '' ){
-    // skip auto addition
-  } else if ( btnMap ) {
-    btnMap.addControl(newControl);
-  } else {
-    map.addControl(newControl);
-  }
-  return newControl;
+    if ( btnMap == '' ){
+        // skip auto addition
+    } else if ( btnMap ) {
+        btnMap.addControl(newControl);
+    } else {
+        map.addControl(newControl);
+    }
+    return newControl;
 };
